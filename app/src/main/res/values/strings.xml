@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Prova P1</string>
+    <string name="quilometragem_atual">Quilometragem Atual</string>
+    <string name="quantidade_abastecida">Quantidade Abastecida</string>
+    <string name="data">Data</string>
+    <string name="valor_r">Valor (R$)</string>
+    <string name="salvar">Salvar</string>
 </resources>
