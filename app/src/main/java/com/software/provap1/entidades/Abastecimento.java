@@ -6,10 +6,6 @@ public class Abastecimento {
     private String data;
     private Float valor;
 
-    public Abastecimento(){
-
-    }
-
     public Float getQuilometragemAtual() {
         return quilometragemAtual;
     }
