@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 quantidadeAbastecida += listaAbastecimento.get(i).getQuantidadeAbastecida();
             }
 
-            consumo = quantidadeAbastecida / quilometragemRodada;
+            consumo = quilometragemRodada / quantidadeAbastecida;
         } else {
             consumo = 0f;
         }
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 abastecimentoDB.listar(listaAbastecimento);
                                 adapter.notifyDataSetChanged();
+                                calcularConsumo();
 
                                 Toast.makeText(MainActivity.this, "Removido com Sucesso!", Toast.LENGTH_LONG).show();
                             }
