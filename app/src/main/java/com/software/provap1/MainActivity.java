@@ -58,16 +58,30 @@ public class MainActivity extends AppCompatActivity {
         listaDados.setAdapter(adapter);
         abastecimentoDB.listar(listaAbastecimento);
 
-        campoConsumo.setText(String.format("%.2f", calcularConsumo()));
+        calcularConsumo();
         acoesComponentes();
     }
 
-    private float calcularConsumo() {
-        Float consumo;
+    private void calcularConsumo() {
+        Float consumo = 0f;
+        Float quilometragemRodada = 0f;
+        Float quantidadeAbastecida = 0f;
 
-        consumo = 0f;
+        if (listaAbastecimento.size() != 1) {
+            for (int i = 0; i < listaAbastecimento.size(); i++) {
+                if (i + 1 < listaAbastecimento.size()) {
+                    quilometragemRodada += listaAbastecimento.get(i + 1).getQuilometragemAtual() - listaAbastecimento.get(i).getQuilometragemAtual();
+                }
 
-        return (consumo);
+                quantidadeAbastecida += listaAbastecimento.get(i).getQuantidadeAbastecida();
+            }
+
+            consumo = quantidadeAbastecida / quilometragemRodada;
+        } else {
+            consumo = 0f;
+        }
+
+        campoConsumo.setText(String.format("%.2f Litro/KM | %.2f | %.2f", consumo, quilometragemRodada, quantidadeAbastecida));
     }
 
     private void acoesComponentes() {
@@ -106,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 abastecimentoDB.inserir(abastecimento);
                 abastecimentoDB.listar(listaAbastecimento);
                 adapter.notifyDataSetChanged();
+                calcularConsumo();
             }
         });
     }
