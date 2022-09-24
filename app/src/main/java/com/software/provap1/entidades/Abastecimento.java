@@ -48,6 +48,6 @@ public class Abastecimento {
     }
 
     public String toString(){
-        return(String.format("%s | %s | %s | %s", quilometragemAtual, quantidadeAbastecida, data, valor));
+        return(String.format("KM: %s | QAB: %s | %s | R$%s", quilometragemAtual, quantidadeAbastecida, data, valor));
     }
 }
