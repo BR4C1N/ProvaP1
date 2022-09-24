@@ -46,4 +46,8 @@ public class Abastecimento {
     public void setValor(Float valor) {
         this.valor = valor;
     }
+
+    public String toString(){
+        return(String.format("%s | %s | %s | %s", quilometragemAtual, quantidadeAbastecida, data, valor));
+    }
 }
