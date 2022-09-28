@@ -67,21 +67,23 @@ public class MainActivity extends AppCompatActivity {
         Float quilometragemRodada = 0f;
         Float quantidadeAbastecida = 0f;
 
-        if (listaAbastecimento.size() != 1) {
+        if (!listaAbastecimento.isEmpty()) {
             for (int i = 0; i < listaAbastecimento.size(); i++) {
-                if (i + 1 < listaAbastecimento.size()) {
-                    quilometragemRodada += listaAbastecimento.get(i + 1).getQuilometragemAtual() - listaAbastecimento.get(i).getQuilometragemAtual();
-                }
-
                 quantidadeAbastecida += listaAbastecimento.get(i).getQuantidadeAbastecida();
             }
 
-            consumo = quilometragemRodada / quantidadeAbastecida;
-        } else {
-            consumo = 0f;
+            if (listaAbastecimento.size() > 1) {
+                quilometragemRodada = listaAbastecimento.get(listaAbastecimento.size() - 1).getQuilometragemAtual() - listaAbastecimento.get(0).getQuilometragemAtual();
+
+                if (quantidadeAbastecida != 0) {
+                    consumo = quilometragemRodada / quantidadeAbastecida;
+                }
+            } else {
+                quilometragemRodada = listaAbastecimento.get(0).getQuilometragemAtual();
+            }
         }
 
-        campoConsumo.setText(String.format("%.2f Litro/KM | %.2f | %.2f", consumo, quilometragemRodada, quantidadeAbastecida));
+        campoConsumo.setText(String.format("%.2f KM/Litro | %.2f KM | %.2f L", consumo, quilometragemRodada, quantidadeAbastecida));
     }
 
     private void acoesComponentes() {
