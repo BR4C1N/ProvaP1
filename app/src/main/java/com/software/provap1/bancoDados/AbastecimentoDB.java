@@ -49,7 +49,7 @@ public class AbastecimentoDB {
         while (query.moveToNext()) {
             Abastecimento abastecimento = new Abastecimento();
 
-            abastecimento.setId(Integer.parseInt(query.getString(0)));
+            abastecimento.setId(query.getInt(0));
             abastecimento.setQuilometragemAtual(query.getFloat(1));
             abastecimento.setQuantidadeAbastecida(query.getFloat(2));
             abastecimento.setData(query.getString(3));
